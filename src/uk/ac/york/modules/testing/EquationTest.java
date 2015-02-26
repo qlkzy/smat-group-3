@@ -13,7 +13,8 @@ import org.junit.Test;
 
 public class EquationTest {
 
-	private class RobotThread extends Thread {
+	private static class RobotThread extends Thread {
+		private static int delayMs = 250;
 		private Robot robot;
 		private ArrayList<Integer> keys;
 		
@@ -27,13 +28,15 @@ public class EquationTest {
 		}
 		
 		public void run() {
-			try {sleep(100);} catch (InterruptedException e) {}
+			delay();
 			for(int k : keys) {
 				robot.keyPress(k);
-				robot.delay(100);
 				robot.keyRelease(k);
-				robot.delay(100);
 			}
+		}
+		
+		private void delay() {
+			robot.delay(delayMs);
 		}
 	}
 		
@@ -49,6 +52,13 @@ public class EquationTest {
 		robot.join();
 	}
 	
+	@Test
+	public void shouldDoSomethingSensibleOnEmptyString() {
+		robot.add(KeyEvent.VK_ENTER);
+		robot.start();
+		Equation e = Equation.createEquationFromType(SinusBasedEquation.class);		
+	}
+
 	@Test		
 	public void shouldCancelNicely() {
 		robot.add(KeyEvent.VK_TAB);
