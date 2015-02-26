@@ -26,5 +26,9 @@ public class FractionEquationTest {
 	public void testFractionToString(){
 		assertEquals("6.0/(x+1.0)",fraction.toString());
 	}
-
+	
+	/**
+	 * When 10<b<=0 the graph is mangled
+	 */
+	
 }
