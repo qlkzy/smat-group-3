@@ -17,7 +17,7 @@ public class TestFirstOrderEquation {
 	@Test
 	public final void testToString() {
 		FirstOrderEquation foEquation = new FirstOrderEquation(3, 4);
-		assertEquals(foEquation.toString(), "3.0x+4.0");
+		assertEquals("3.0x+4.0", foEquation.toString());
 	}
 	
 	/**
@@ -27,7 +27,7 @@ public class TestFirstOrderEquation {
 	@Test
 	public final void testToStringNegative() {
 		FirstOrderEquation foEquation = new FirstOrderEquation(5, -5);
-		assertEquals(foEquation.toString(), "5.0x-5.0");
+		assertEquals("5.0x-5.0", foEquation.toString());
 	}
 	
 	/**
@@ -37,7 +37,7 @@ public class TestFirstOrderEquation {
 	@Test
 	public final void testToStringOneCoefficient() {
 		FirstOrderEquation foEquation = new FirstOrderEquation(1, 7);
-		assertEquals(foEquation.toString(), "x+7.0");
+		assertEquals("x+7.0", foEquation.toString());
 	}
 	
 	/**
@@ -46,6 +46,6 @@ public class TestFirstOrderEquation {
 	@Test
 	public final void testOf() {
 		FirstOrderEquation foEquation = new FirstOrderEquation(5.5, 15);
-		assertEquals(foEquation.of(10) ,70, 0);
+		assertEquals(70, foEquation.of(10), 0);
 	}
 }
