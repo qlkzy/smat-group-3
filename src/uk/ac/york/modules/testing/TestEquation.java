@@ -26,23 +26,14 @@ public class TestEquation{
 	@Test
 	public final void testMain() {
 		String []arguments = {"Help"};
-		try{
-			EquationsView.main(arguments);
-		}catch(Exception e){
-			fail();
-		}
+		EquationsView.main(arguments);
 	}
 
 	
-	@Test
+	@Test(expected=IllegalArgumentException.class)
 	public final void testMainWithTwoArguments() {
 		String []arguments = {"Help", "AnotherArgument"};
-		try{
-			EquationsView.main(arguments);
-			fail();
-			return;
-		}catch(IllegalArgumentException e){			
-		}
+		EquationsView.main(arguments);
 	}
 	
 	/**
