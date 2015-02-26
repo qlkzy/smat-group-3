@@ -178,4 +178,10 @@ public class EquationPanel extends JPanel {
 		series[0].add(x);
 		series[1].add(y);
 	}
+	
+	
+	/**
+	 * Graph y-axis is always positive, even for equations below the x-axis
+	 * Enter y=-1.0x+0.0 to test
+	 */
 }
