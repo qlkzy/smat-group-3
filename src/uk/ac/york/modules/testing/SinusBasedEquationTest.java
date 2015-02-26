@@ -23,4 +23,24 @@ public class SinusBasedEquationTest {
 	public void shouldWorkAtOrigin() {
 		assertEquals(4, eq.of(0), 0.01);
 	}
+	
+	/**
+	 * Press "Cancel" --- Invalid double stacktrace
+	 */
+	
+	/**
+	 * Enter "c = -1" --- Graph is mangled
+	 */
+	
+	/**
+	 * Enter "NaN" for all the numbers --- doesn't complain, just produces an empty graph 
+	 */
+	
+	/**
+	 * Enter "Blah" for a number --- doesn't validate, throws exception
+	 */
+	
+	/**
+	 * 
+	 */
 }
