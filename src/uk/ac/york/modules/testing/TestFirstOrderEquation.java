@@ -21,6 +21,26 @@ public class TestFirstOrderEquation {
 	}
 	
 	/**
+	 * Test method for {@link uk.ac.york.modules.testing.FirstOrderEquation#toString()}.
+	 * Tests whether the string is formatted correctly for negative constants
+	 */
+	@Test
+	public final void testToStringNegative() {
+		FirstOrderEquation foEquation = new FirstOrderEquation(5, -5);
+		assertEquals(foEquation.toString(), "5.0x-5.0");
+	}
+	
+	/**
+	 * Test method for {@link uk.ac.york.modules.testing.FirstOrderEquation#toString()}.
+	 * Tests whether the string is formatted correctly for coefficients of 1
+	 */
+	@Test
+	public final void testToStringOneCoefficient() {
+		FirstOrderEquation foEquation = new FirstOrderEquation(1, 7);
+		assertEquals(foEquation.toString(), "x+7.0");
+	}
+	
+	/**
 	 * Test method for {@link uk.ac.york.modules.testing.FirstOrderEquation#of(double)}.
 	 */
 	@Test
