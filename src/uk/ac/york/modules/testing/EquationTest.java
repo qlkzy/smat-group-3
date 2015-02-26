@@ -27,12 +27,12 @@ public class EquationTest {
 		}
 		
 		public void run() {
-			try {sleep(500);} catch (InterruptedException e) {}
+			try {sleep(100);} catch (InterruptedException e) {}
 			for(int k : keys) {
 				robot.keyPress(k);
-				robot.delay(500);
+				robot.delay(100);
 				robot.keyRelease(k);
-				robot.delay(500);
+				robot.delay(100);
 			}
 		}
 	}
