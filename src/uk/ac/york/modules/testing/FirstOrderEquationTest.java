@@ -9,7 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 
-public class TestFirstOrderEquation {
+public class FirstOrderEquationTest {
 	
 	/**
 	 * Test method for {@link uk.ac.york.modules.testing.FirstOrderEquation#toString()}.
