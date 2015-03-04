@@ -12,7 +12,7 @@ public class VariableHighlighter {
 		StringBuilder b = new StringBuilder();
 		int start = 0;
 		b.append("<html>");
-		while (source.indexOf(subString, start) > 0) {
+		while (source.indexOf(subString, start) >= 0) {
 			int end = source.indexOf(subString, start);
 			b.append(source.substring(start, end));
 			b.append("<font color=green>");
