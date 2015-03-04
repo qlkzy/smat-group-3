@@ -1,6 +1,7 @@
 package uk.ac.york.modules.testing;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class Series implements Iterable<Point> {
@@ -11,6 +12,11 @@ public class Series implements Iterable<Point> {
 	public final double minY;
 	public final double maxY;
 
+	 
+	public final double yLowerQuartile;
+	public final double yMedian;
+	public final double yUpperQuartile;
+	
 	private final ArrayList<Point> points;
 	
 	public Series(Equation e, double minX, double maxX, double step) {
@@ -28,9 +34,21 @@ public class Series implements Iterable<Point> {
 			if (y < minY) minY = y;
 			if (y > maxY) maxY = y;
 			points.add(new Point(x, y));
-		}
+		}		
 		this.minY = minY;
 		this.maxY = maxY;
+		
+		// calculate median
+		double[] yValues = new double[points.size()];
+		for (int i = 0; i < points.size(); i++) {
+			yValues[i] = points.get(i).y;
+		}
+
+		Arrays.sort(yValues);
+		
+		yLowerQuartile = yValues[yValues.length/4];
+		yMedian = yValues[yValues.length/2];
+		yUpperQuartile = yValues[(3*yValues.length)/4];
 	}
 
 	@Override

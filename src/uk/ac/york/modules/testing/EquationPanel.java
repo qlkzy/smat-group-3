@@ -5,20 +5,23 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
+import java.text.DecimalFormat;
 
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
 public class EquationPanel extends JPanel {
 	private static final long serialVersionUID = -1767320964962065783L;
-
-	/**
-	 * The equation.
-	 */
+	private static final int borderWidth = 50;
+	
+	
 	private final Equation equation;
 	
 	private final Series series;
-	
+	private final double maxY;
+	private final double minY;
+
+	private final DecimalFormat yScaleFormat;
 	
 	/**
 	 * Takes an equation and assigns it to the class member.
@@ -30,100 +33,107 @@ public class EquationPanel extends JPanel {
 		this.equation = equation;
 		this.setBackground(Color.white);
 		this.series = new Series(equation, 0, 10, 10.0/2000.0);
-
-		nDigitsX=(int)Math.floor(Math.log10(series.maxX));
-		nDigitsY=(int)Math.floor(Math.log10(series.maxY));
-		leftBorder = 20+nDigitsY*7;
+		
+		// cleverness about min/max y values
+		// this is to handle functions with an enormous range
+		
+		// initially define the max/min in terms of the quartiles
+		double maxY = series.yUpperQuartile + (series.yUpperQuartile - series.yMedian) * 2;
+		double minY = series.yLowerQuartile - (series.yMedian - series.yLowerQuartile) * 2;				
+		
+		// if that was too pessimistic, clamp to the actual values
+		if (maxY > series.maxY) {
+			maxY = series.maxY;
+		}
+		if (minY < series.minY) {
+			minY = series.minY;
+		}
+		
+		// if we've only left off a 'small' amount of the graph, allow it on
+		if (Math.abs(series.maxY - maxY) < (maxY - minY)) {
+			maxY = series.maxY;
+		}
+		if (Math.abs(series.minY - minY) < (maxY - minY)) {
+			minY = series.minY;
+		}
+		
+		// pad limits to give space around graph
+		this.maxY = maxY + (maxY - minY) * 0.1;
+		this.minY = minY - (maxY - minY) * 0.1;
+		
+		this.yScaleFormat = new DecimalFormat();
+		int yFractionDigits = (int)Math.ceil(1/(maxY-minY));
+		yScaleFormat.setMaximumFractionDigits(yFractionDigits);
+		yScaleFormat.setMinimumFractionDigits(yFractionDigits);
 	}
-
-	/**
-	 * The size of the border on the left part.
-	 */
-	int leftBorder = 25;
-
-	/**
-	 * The size of the border on the right part.
-	 */
-	int rightBorder = 25;
-
-	/**
-	 * The size of the border on the lower part.
-	 */
-	int horizontalBorder = 25;
-
-	/**
-	 * The number of digits of the scale of X.
-	 */
-	int nDigitsX = 1;
-
-	/**
-	 * The number of digits of the scale of Y.
-	 */
-	int nDigitsY = 1;
 	
-	
-	/**
-	 * Popup menu on this graph.
-	 */
-	JPopupMenu popup=null;
-
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		// we get the graph component
+
 		Graphics2D g2 = (Graphics2D)g;
+
 		// we get the size of the area to paint 
-		double w = getWidth();
-		double h = getHeight();
+		double width = getWidth();
+		double height = getHeight();
 		
 		// we can't draw on a zero-size canvas
 		// hopefully this is a transient condition
-		if (w <= 0 || h <= 0)
+		if (width <= 0 || height <= 0)
 			return;
 		
-		// Draw y-axis.
-		g2.draw(new Line2D.Double(leftBorder, horizontalBorder, leftBorder, h-horizontalBorder));
-		// Draw x-axis.
-		g2.draw(new Line2D.Double(leftBorder, h-horizontalBorder, w-rightBorder, h-horizontalBorder));
-		g2.drawString("y="+equation.toString(), leftBorder , horizontalBorder-5);
-		// we draw the y-labels
-		double ystep = Math.pow(10, nDigitsY);
-		if ((Math.pow(10, nDigitsY)*2)>series.maxY) 
-			ystep = Math.pow(10, nDigitsY-1)*2;
+		// find the y-axis position at which to draw the x-axis
+		double xAxisY = scaleY(0, height);
+		
+		// clamp the x-axis to the borders
+		if (xAxisY < borderWidth) {
+			xAxisY = borderWidth;
+		}
+		if (xAxisY > height-borderWidth) {
+			xAxisY = height-borderWidth;
+		}
+		
+		// draw the y-axis.
+		g2.draw(new Line2D.Double(borderWidth, borderWidth, borderWidth, height-borderWidth));
+		
+		// draw the x-axis.
+		g2.draw(new Line2D.Double(borderWidth, xAxisY, width-borderWidth, xAxisY));
+		
+		// draw the equation
+		g2.drawString("y="+equation.toString(), borderWidth , borderWidth-12);
 
-		for (int i = 0; i<20; i++) {
-			int grade = (int)(i*ystep);
-			if (grade>series.maxY) {
-				break;
-			}
-			double y1=h-horizontalBorder-(h-2*horizontalBorder)*grade/series.maxY;
-			g2.draw(new Line2D.Double(leftBorder-1,y1,leftBorder+1,y1));
-			g2.drawString(""+grade, 5, (int)y1+5);
+		double yStep = (maxY - minY) / 20;
+		for (double mark = minY; mark <= maxY; mark += yStep) {
+			double y = scaleY(mark, height);			
+			if (y > height)
+				continue;
+			g2.draw(new Line2D.Double(borderWidth-2, y, borderWidth+2, y));
+			g2.drawString(yScaleFormat.format(mark), 5, (int)y);
 		}
 
-		// we draw the x-labels
-		double xstep = Math.pow(10, nDigitsX);
-		if ((Math.pow(10, nDigitsX)*2)>series.maxX) 
-			xstep = Math.pow(10, nDigitsX-1)*2;
-		for (int i = 0; i<10; i++) {
-			int grade = (int)(i*xstep);
-			if (grade>series.maxX) {
-				break;
-			}
-			double x1=leftBorder+(w-leftBorder-rightBorder)*grade/series.maxX;
-			g2.draw(new Line2D.Double(x1,h-horizontalBorder+1,x1,h-horizontalBorder-1));
-			g2.drawString(""+grade, (int)(x1-(nDigitsX*4)-2), (int) (h-horizontalBorder+17));
+		double xStep = (series.maxX - series.minX) / 10;
+		for (double mark = series.minX; mark <= series.maxX; mark += xStep) {
+			double x = scaleX(mark, width);
+			if (x > width)
+				continue;
+			g2.draw(new Line2D.Double(x, xAxisY+2, x, xAxisY-2));
+			g2.drawString(""+mark, (int)(x+3), (int)(xAxisY+17));
 		}
-
-		// we draw data points.
-		try {
-			g2.setPaint(Color.red);
-			for (Point p : series) {
-				double x = leftBorder + (w-leftBorder-rightBorder)*p.x/series.maxX;
-				double y =  h - horizontalBorder - (h-2*horizontalBorder)*p.y/series.maxY;
-				g2.fill(new Ellipse2D.Double(x-2, y-2, 4, 4));
-			}
-		} catch (NullPointerException e) {
-			System.out.println("Ouch");
+		
+		g2.setPaint(Color.red);
+		for (Point p : series) {
+			double x = scaleX(p.x, width);
+			double y = scaleY(p.y, height);
+			if (y < borderWidth || y > height-borderWidth)
+				continue;
+			g2.fill(new Ellipse2D.Double(x-2, y-2, 4, 4));
 		}
+	}
+	
+	private double scaleX(double x, double width) {
+		return x * ((width - 2*borderWidth) / (series.maxX - series.minX)) + borderWidth;
+	}
+	
+	private double scaleY(double y, double h) {
+		return h - (y - minY) * ((h - 2*borderWidth) / (maxY - minY)) - borderWidth;
 	}
 }
