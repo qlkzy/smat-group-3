@@ -56,7 +56,7 @@ public class EquationTest {
 	public void shouldDoSomethingSensibleOnEmptyString() {
 		robot.add(KeyEvent.VK_ENTER);
 		robot.start();
-		Equation e = Equation.createEquationFromType(SinusBasedEquation.class);		
+		Equation.createEquationFromType(SinusBasedEquation.class);		
 	}
 
 	@Ignore
@@ -66,7 +66,7 @@ public class EquationTest {
 		robot.add(KeyEvent.VK_TAB);
 		robot.add(KeyEvent.VK_ENTER);
 		robot.start();
-		Equation e = Equation.createEquationFromType(SinusBasedEquation.class);
+		Equation.createEquationFromType(SinusBasedEquation.class);
 	}
 
 	@Ignore
@@ -75,7 +75,7 @@ public class EquationTest {
 		robot.add(KeyEvent.VK_H);
 		robot.add(KeyEvent.VK_ENTER);
 		robot.start();
-		Equation e = Equation.createEquationFromType(SinusBasedEquation.class);
+		Equation.createEquationFromType(SinusBasedEquation.class);
 	}
 	
 }
