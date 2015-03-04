@@ -31,4 +31,8 @@ public class SinusBasedEquation extends Equation {
 	public String toString() {
 		return eqn.toString();
 	}
+
+	public static String description() {
+		return "a*sin(b*x)^c+d";
+	}
 }

@@ -16,19 +16,7 @@ import static uk.ac.york.modules.testing.equationast.Node.*;
 public class FractionEquation extends Equation {
 
 	private final Node eqn;
-	
-	/**
-	 * a in a/(x+b).
-	 */
-	double a;
-	
-	/**
-	 * b in a/(x+b).
-	 */
-	double b;
-	/**
-	 * 
-	 */
+
 	public FractionEquation(double a, double b) {
 		this.eqn = num(a).dividedBy(x().plus(num(b)));
 	}
@@ -39,6 +27,10 @@ public class FractionEquation extends Equation {
 	@Override
 	public String toString() {
 		return eqn.toString();
+	}
+
+	public static String description() {
+		return "a/(x+b)";
 	}
 
 }

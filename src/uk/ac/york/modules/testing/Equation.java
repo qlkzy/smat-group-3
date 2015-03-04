@@ -4,9 +4,13 @@
 package uk.ac.york.modules.testing;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.JOptionPane;
+
+import uk.ac.york.modules.testing.input.VariableInputDialog;
+import uk.ac.york.modules.testing.input.VariableInputDialog.Cancelled;
 
 /**
  * This class represents an equation.
@@ -28,23 +32,34 @@ public abstract class Equation {
 	 */
 	@SuppressWarnings("unchecked")
 	public static Equation createEquationFromType(Class equationType) {
-		Constructor c =  equationType.getConstructors()[0];
-		int n_arguments = c.getParameterTypes().length;
-		Object[] arguments = new Double [n_arguments];
-		for (int i=0; i<n_arguments;i++) {
-			//ask for values
-			String s = JOptionPane.showInputDialog(null, ((char)(((byte)'a')+i))+" =", 
-					"Enter argument", JOptionPane.QUESTION_MESSAGE);
-			arguments[i] = Double.parseDouble(s);
-		}
 		try {
-			// we return the new instance
+			Constructor c =  equationType.getConstructors()[0];
+			int n_arguments = c.getParameterTypes().length;
+			Object[] arguments = new Double [n_arguments];
+
+			Method m = equationType.getMethod("description");
+			String description = (String)m.invoke(null);
+
+			for (int i = 0; i < n_arguments; i++) {
+				//ask for values
+				/*
+				String s = JOptionPane.showInputDialog(null, ((char)(((byte)'a')+i))+" =", 
+						"Enter argument", JOptionPane.QUESTION_MESSAGE);
+				arguments[i] = Double.parseDouble(s);
+				*/
+				String varname = ""+(char)(((byte)'a')+i);
+				arguments[i] = VariableInputDialog.prompt(varname, description);
+			}
 			return (Equation)c.newInstance(arguments);
+		} catch (Cancelled c) {	
+			System.out.println("Equation viewing cancelled");
+			System.exit(0);
 		} catch (Exception e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "alert", "alert", JOptionPane.ERROR_MESSAGE);
+			System.exit(1);
 		}
-		// if there was no exception
+		// there is no sane way of reaching here...
 		return null;
 	}
 	
@@ -60,8 +75,6 @@ public abstract class Equation {
 	 * @return the result for this equation given x.
 	 */
 	public double of(double x) {
-		
 		return 0.0d;
 	}
-	
 }

@@ -42,5 +42,9 @@ public class FirstOrderEquation extends Equation {
 	public double of(double x) {
 		return eqn.eval(x);
 	}
+
+	public static String description() {
+		return "ax+b";
+	}
 	
 }
