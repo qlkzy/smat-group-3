@@ -7,9 +7,10 @@ public class Exp extends BinOp {
 	public Exp(Node left, Node right) {
 		super(left, right);
 	}
+	
 	@Override
 	protected Num leftUnit() {
-		return unit;
+		return null;
 	}
 
 	@Override
