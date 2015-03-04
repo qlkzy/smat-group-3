@@ -74,7 +74,5 @@ public abstract class Equation {
 	 * @param x the x to use with f(x)
 	 * @return the result for this equation given x.
 	 */
-	public double of(double x) {
-		return 0.0d;
-	}
+	public abstract double of(double x);
 }
