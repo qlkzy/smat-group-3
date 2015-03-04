@@ -58,8 +58,19 @@ public class EquationPanel extends JPanel {
 		}
 		
 		// pad limits to give space around graph
-		this.maxY = maxY + (maxY - minY) * 0.1;
-		this.minY = minY - (maxY - minY) * 0.1;
+		maxY = maxY + (maxY - minY) * 0.1;
+		minY = minY - (maxY - minY) * 0.1;
+		
+		// if we wouldn't have any values to display between an axis and 0, clamp it to 0
+		if (minY < 0 && series.yValuesInRange(minY, 0) == 0) {
+			minY = 0;
+		}
+		if (maxY > 0 && series.yValuesInRange(0, maxY) == 0) {
+			maxY = 0;
+		}
+
+		this.minY = minY;
+		this.maxY = maxY;
 		
 		this.yScaleFormat = new DecimalFormat();
 		int yFractionDigits = (int)Math.ceil(1/(maxY-minY));
@@ -101,7 +112,7 @@ public class EquationPanel extends JPanel {
 		// draw the equation
 		g2.drawString("y="+equation.toString(), borderWidth , borderWidth-12);
 
-		double yStep = (maxY - minY) / 20;
+		final double yStep = (maxY - minY) / 20;
 		for (double mark = minY; mark <= maxY; mark += yStep) {
 			double y = scaleY(mark, height);			
 			if (y > height)
@@ -110,7 +121,7 @@ public class EquationPanel extends JPanel {
 			g2.drawString(yScaleFormat.format(mark), 5, (int)y);
 		}
 
-		double xStep = (series.maxX - series.minX) / 10;
+		final double xStep = (series.maxX - series.minX) / 10;
 		for (double mark = series.minX; mark <= series.maxX; mark += xStep) {
 			double x = scaleX(mark, width);
 			if (x > width)

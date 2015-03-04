@@ -51,6 +51,16 @@ public class Series implements Iterable<Point> {
 		yUpperQuartile = yValues[(3*yValues.length)/4];
 	}
 
+	public int yValuesInRange(double lower, double upper) {
+		int count = 0;
+		for (Point p : points) {
+			if (p.y >= lower && p.y <= upper) {
+				count++;
+			}
+		}
+		return count;
+	}
+	
 	@Override
 	public Iterator<Point> iterator() {
 		return points.iterator();
