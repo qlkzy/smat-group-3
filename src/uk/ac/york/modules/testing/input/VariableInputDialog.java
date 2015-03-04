@@ -89,6 +89,7 @@ public class VariableInputDialog extends JDialog implements ActionListener, Docu
 		if (validDouble() && (e.getSource() == ok || e.getSource() == text)) {
 			setVisible(false);
 		} else if (e.getSource() == cancel) {
+			text.setText("");
 			setVisible(false);
 		}
 	}
