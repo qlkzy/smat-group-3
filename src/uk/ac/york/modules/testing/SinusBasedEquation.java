@@ -3,6 +3,9 @@
  */
 package uk.ac.york.modules.testing;
 
+import uk.ac.york.modules.testing.equationast.Node;
+import static uk.ac.york.modules.testing.equationast.Node.*;
+
 /**
  * This class represents a*sin(b*x)^c+d
  * 
@@ -11,42 +14,21 @@ package uk.ac.york.modules.testing;
  *
  */
 public class SinusBasedEquation extends Equation {
-	/**
-	 * a in a*sin(b*x)^c+d.
-	 */
-	double a;
 	
-	/**
-	 * b in a*sin(b*x)^c+d.
-	 */
-	double b;
-
-	/**
-	 * c in a*sin(b*x)^c+d.
-	 */
-	double c;
-
-	/**
-	 * d in a*sin(b*x)^c+d.
-	 */
-	double d;
-
+	private final Node eqn;
+	
 	/**
 	 * Constructor for sinus-based equations.
 	 */
 	public SinusBasedEquation(double a, double b, double c, double d) {
-		this.a = a;
-		this.b = b;
-		this.c = c;
-		this.d = d;
-	
+		this.eqn = num(a).times(sin(num(b).times(x())).exp(num(c))).plus(num(d));
 	}
 	@Override
 	public double of(double x) {
-		return a*Math.pow(Math.sin(b*x),c)+d;
+		return eqn.eval(x);
 	}
 	@Override
 	public String toString() {
-		return a+"(sin("+b+"x)^"+c+")+"+d;
+		return eqn.toString();
 	}
 }

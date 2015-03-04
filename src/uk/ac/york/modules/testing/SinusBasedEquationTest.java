@@ -16,7 +16,13 @@ public class SinusBasedEquationTest {
 
 	@Test
 	public void shouldFormatCorrectly() {
-		assertEquals("1.0(sin(2.0x)^3.0)+4.0", eq.toString());
+		assertEquals("sin(2x)^3+4", eq.toString());
+	}
+	
+	@Test
+	public void shouldFormatADifferentEquationCorrectly() {
+		eq = new SinusBasedEquation(4, 3, 2, 1);
+		assertEquals("4sin(3x)^2+1", eq.toString());
 	}
 	
 	@Test

@@ -3,6 +3,9 @@
  */
 package uk.ac.york.modules.testing;
 
+import uk.ac.york.modules.testing.equationast.Node;
+import static uk.ac.york.modules.testing.equationast.Node.*;
+
 /**
  * This class represents a first order equation (f(x)=ax+b)
  * 
@@ -12,8 +15,7 @@ package uk.ac.york.modules.testing;
  */
 public class FirstOrderEquation extends Equation {
 
-	double a;
-	double b;
+	private final Node eqn;
 	
 	/**
 	 * Creates a first-order equation.
@@ -22,8 +24,7 @@ public class FirstOrderEquation extends Equation {
 	 * @param b b in ax+b
 	 */
 	public FirstOrderEquation(double a, double b) {
-		this.a=a;
-		this.b=b;
+		this.eqn = num(a).times(x()).plus(num(b));
 	}
 	
 	/* (non-Javadoc)
@@ -31,7 +32,7 @@ public class FirstOrderEquation extends Equation {
 	 */
 	@Override
 	public String toString() {
-		return a+"x+"+b;
+		return eqn.toString();
 	}
 
 	/* (non-Javadoc)
@@ -39,7 +40,7 @@ public class FirstOrderEquation extends Equation {
 	 */
 	@Override
 	public double of(double x) {
-		return a*x+b;
+		return eqn.eval(x);
 	}
 	
 }

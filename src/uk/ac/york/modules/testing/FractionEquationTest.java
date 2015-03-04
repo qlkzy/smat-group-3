@@ -24,7 +24,7 @@ public class FractionEquationTest {
 	
 	@Test
 	public void testFractionToString(){
-		assertEquals("6.0/(x+1.0)",fraction.toString());
+		assertEquals("6/(x+1)",fraction.toString());
 	}
 	
 	/**

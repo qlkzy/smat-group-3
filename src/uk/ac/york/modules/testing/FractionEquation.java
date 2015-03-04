@@ -3,6 +3,9 @@
  */
 package uk.ac.york.modules.testing;
 
+import uk.ac.york.modules.testing.equationast.Node;
+import static uk.ac.york.modules.testing.equationast.Node.*;
+
 /**
  * This class represents an equation of the type f(x) = a/(x+b).
  * 
@@ -12,6 +15,8 @@ package uk.ac.york.modules.testing;
  */
 public class FractionEquation extends Equation {
 
+	private final Node eqn;
+	
 	/**
 	 * a in a/(x+b).
 	 */
@@ -25,17 +30,15 @@ public class FractionEquation extends Equation {
 	 * 
 	 */
 	public FractionEquation(double a, double b) {
-		this.a = a;
-		this.b = b;
-	
+		this.eqn = num(a).dividedBy(x().plus(num(b)));
 	}
 	@Override
 	public double of(double x) {
-		return a/(x+b);
+		return eqn.eval(x);
 	}
 	@Override
 	public String toString() {
-		return a+"/(x+"+b+")";
+		return eqn.toString();
 	}
 
 }
