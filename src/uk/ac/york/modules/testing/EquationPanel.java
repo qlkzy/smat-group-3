@@ -23,11 +23,6 @@ public class EquationPanel extends JPanel {
 
 	private final DecimalFormat yScaleFormat;
 	
-	/**
-	 * Takes an equation and assigns it to the class member.
-	 * 
-	 * @param equation
-	 */
 	public EquationPanel(Equation equation) {
 		super();
 		this.equation = equation;
@@ -72,8 +67,10 @@ public class EquationPanel extends JPanel {
 		this.minY = minY;
 		this.maxY = maxY;
 		
+		// choose a plausibly-minimal number of fractional digits
+		// for the y axis
 		this.yScaleFormat = new DecimalFormat();
-		int yFractionDigits = (int)Math.ceil(1/(maxY-minY));
+		final int yFractionDigits = (int)Math.ceil(1/(maxY-minY));
 		yScaleFormat.setMaximumFractionDigits(yFractionDigits);
 		yScaleFormat.setMinimumFractionDigits(yFractionDigits);
 	}
@@ -84,8 +81,8 @@ public class EquationPanel extends JPanel {
 		Graphics2D g2 = (Graphics2D)g;
 
 		// we get the size of the area to paint 
-		double width = getWidth();
-		double height = getHeight();
+		final double width = getWidth();
+		final double height = getHeight();
 		
 		// we can't draw on a zero-size canvas
 		// hopefully this is a transient condition
@@ -114,7 +111,7 @@ public class EquationPanel extends JPanel {
 
 		final double yStep = (maxY - minY) / 20;
 		for (double mark = minY; mark <= maxY; mark += yStep) {
-			double y = scaleY(mark, height);			
+			final double y = scaleY(mark, height);			
 			if (y > height)
 				continue;
 			g2.draw(new Line2D.Double(borderWidth-2, y, borderWidth+2, y));
@@ -123,7 +120,7 @@ public class EquationPanel extends JPanel {
 
 		final double xStep = (series.maxX - series.minX) / 10;
 		for (double mark = series.minX; mark <= series.maxX; mark += xStep) {
-			double x = scaleX(mark, width);
+			final double x = scaleX(mark, width);
 			if (x > width)
 				continue;
 			g2.draw(new Line2D.Double(x, xAxisY+2, x, xAxisY-2));
@@ -132,9 +129,9 @@ public class EquationPanel extends JPanel {
 		
 		g2.setPaint(Color.red);
 		for (Point p : series) {
-			double x = scaleX(p.x, width);
-			double y = scaleY(p.y, height);
-			if (y < borderWidth || y > height-borderWidth)
+			final double x = scaleX(p.x, width);
+			final double y = scaleY(p.y, height);
+			if (y < borderWidth || y > height-borderWidth || Double.isNaN(y))
 				continue;
 			g2.fill(new Ellipse2D.Double(x-2, y-2, 4, 4));
 		}
