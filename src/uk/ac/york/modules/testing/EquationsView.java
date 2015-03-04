@@ -24,13 +24,6 @@ public class EquationsView extends JApplet {
 	private static final long serialVersionUID = 1319302888145109147L;
 
 	/**
-	 * @throws HeadlessException
-	 */
-	public EquationsView() throws HeadlessException {
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -56,13 +49,11 @@ public class EquationsView extends JApplet {
 					+ "\tFraction:     f(x) = a/(x+b)");
 		}
 
-		if (e != null) {
-			JFrame f = new JFrame("Equation");
-			f.setSize(800, 600);
-			EquationPanel p = new EquationPanel(e);
-			f.add(p);
-			f.setVisible(true);
-		}
+		JFrame f = new JFrame("Equation");
+		f.setSize(800, 600);
+		EquationPanel p = new EquationPanel(e);
+		f.add(p);
+		f.setVisible(true);
 	}
 	
 	
