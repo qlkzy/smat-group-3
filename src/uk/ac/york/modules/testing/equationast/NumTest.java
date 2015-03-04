@@ -49,5 +49,4 @@ public class NumTest {
 	public void decimalsShouldFormatAsDecimal() {
 		assertEquals("15.1", new Num(15.1).toString());
 	}
-	
 }

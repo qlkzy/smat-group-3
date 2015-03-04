@@ -22,5 +22,4 @@ public class Sin extends Node {
 	public String toString() {
 		return "sin(" + arg.toString() + ")";
 	}
-
 }

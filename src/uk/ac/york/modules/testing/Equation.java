@@ -1,6 +1,3 @@
-/**
- * 
- */
 package uk.ac.york.modules.testing;
 
 import java.lang.reflect.Constructor;
@@ -21,7 +18,6 @@ import uk.ac.york.modules.testing.input.VariableInputDialog.Cancelled;
  */
 public abstract class Equation {
 
-	
 	/**
 	 * Static method creating an instance of a given Equation type. 
 	 * The method asks values of parameters through option panes.
@@ -32,6 +28,7 @@ public abstract class Equation {
 	@SuppressWarnings("unchecked")
 	public static Equation createEquationFromType(Class<? extends Equation> equationType) {
 		try {
+			// here be reflective dragons
 			Constructor<? extends Equation> c =  (Constructor<? extends Equation>)equationType.getConstructors()[0];
 			int n_arguments = c.getParameterTypes().length;
 			Object[] arguments = new Double [n_arguments];
@@ -40,13 +37,7 @@ public abstract class Equation {
 			String description = (String)m.invoke(null);
 
 			for (int i = 0; i < n_arguments; i++) {
-				//ask for values
-				/*
-				String s = JOptionPane.showInputDialog(null, ((char)(((byte)'a')+i))+" =", 
-						"Enter argument", JOptionPane.QUESTION_MESSAGE);
-				arguments[i] = Double.parseDouble(s);
-				*/
-				String varname = ""+(char)(((byte)'a')+i);
+				String varname = ""+(char)(((byte)'a')+i); // aieeee
 				arguments[i] = VariableInputDialog.prompt(varname, description);
 			}
 			return (Equation)c.newInstance(arguments);

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package uk.ac.york.modules.testing;
 
 import uk.ac.york.modules.testing.equationast.Node;
@@ -17,9 +14,6 @@ public class SinusBasedEquation extends Equation {
 	
 	private final Node eqn;
 	
-	/**
-	 * Constructor for sinus-based equations.
-	 */
 	public SinusBasedEquation(double a, double b, double c, double d) {
 		this.eqn = num(a).times(sin(num(b).times(x())).exp(num(c))).plus(num(d));
 	}

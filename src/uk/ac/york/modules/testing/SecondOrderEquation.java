@@ -24,5 +24,4 @@ public class SecondOrderEquation extends Equation {
 	public static String description() {
 		return "ax^2+bx+c";
 	}
-
 }

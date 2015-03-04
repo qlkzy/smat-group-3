@@ -1,6 +1,3 @@
-/**
- * 
- */
 package uk.ac.york.modules.testing;
 
 import uk.ac.york.modules.testing.equationast.Node;
@@ -32,5 +29,4 @@ public class FractionEquation extends Equation {
 	public static String description() {
 		return "a/(x+b)";
 	}
-
 }

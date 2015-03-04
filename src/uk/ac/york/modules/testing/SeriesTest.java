@@ -13,5 +13,4 @@ public class SeriesTest {
 		assertTrue(s.maxY < Double.POSITIVE_INFINITY);
 		assertEquals(-100, s.minY, 0.1);
 	}
-
 }

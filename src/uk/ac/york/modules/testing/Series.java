@@ -20,12 +20,16 @@ public class Series implements Iterable<Point> {
 	private final ArrayList<Point> points;
 	
 	public Series(Equation e, double minX, double maxX, double step) {
+
 		assert step > 0;
+
 		this.minX = minX;
 		this.maxX = maxX;		
 		this.points = new ArrayList<Point>();
+
 		double minY = Double.POSITIVE_INFINITY;
 		double maxY = Double.NEGATIVE_INFINITY;
+
 		for (double x = minX; x < maxX; x += step) {
 			double y = e.of(x);
 			if (Double.isInfinite(y))
@@ -35,6 +39,7 @@ public class Series implements Iterable<Point> {
 			if (y > maxY) maxY = y;
 			points.add(new Point(x, y));
 		}		
+
 		this.minY = minY;
 		this.maxY = maxY;
 		

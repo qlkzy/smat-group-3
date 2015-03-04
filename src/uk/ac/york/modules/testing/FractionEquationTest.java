@@ -30,5 +30,4 @@ public class FractionEquationTest {
 	/**
 	 * When 10<b<=0 the graph is mangled
 	 */
-	
 }

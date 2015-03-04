@@ -108,6 +108,7 @@ public class EquationPanel extends JPanel {
 		// draw the equation
 		g2.drawString("y="+equation.toString(), borderWidth , borderWidth-12);
 
+		// draw the y axis
 		final double yStep = (maxY - minY) / 20;
 		for (double mark = minY; mark <= maxY; mark += yStep) {
 			final double y = scaleY(mark, height);			
@@ -117,6 +118,7 @@ public class EquationPanel extends JPanel {
 			g2.drawString(yScaleFormat.format(mark), 5, (int)y);
 		}
 
+		// draw the x axis
 		final double xStep = (series.maxX - series.minX) / 10;
 		for (double mark = series.minX; mark <= series.maxX; mark += xStep) {
 			final double x = scaleX(mark, width);

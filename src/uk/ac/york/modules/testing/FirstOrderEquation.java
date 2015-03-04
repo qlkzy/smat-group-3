@@ -46,5 +46,4 @@ public class FirstOrderEquation extends Equation {
 	public static String description() {
 		return "ax+b";
 	}
-	
 }

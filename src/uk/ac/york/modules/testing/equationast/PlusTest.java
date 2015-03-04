@@ -30,5 +30,4 @@ public class PlusTest {
 	public void shouldDropRightUnit() {
 		assertEquals("1", new Plus(new Num(1), new Num(0)).toString());
 	}
-		
 }
