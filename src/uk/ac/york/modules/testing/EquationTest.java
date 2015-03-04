@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class EquationTest {
@@ -52,6 +53,7 @@ public class EquationTest {
 		robot.join();
 	}
 	
+	@Ignore
 	@Test
 	public void shouldDoSomethingSensibleOnEmptyString() {
 		robot.add(KeyEvent.VK_ENTER);
@@ -59,6 +61,7 @@ public class EquationTest {
 		Equation e = Equation.createEquationFromType(SinusBasedEquation.class);		
 	}
 
+	@Ignore
 	@Test		
 	public void shouldCancelNicely() {
 		robot.add(KeyEvent.VK_TAB);
@@ -68,6 +71,7 @@ public class EquationTest {
 		Equation e = Equation.createEquationFromType(SinusBasedEquation.class);
 	}
 
+	@Ignore
 	@Test
 	public void shouldBeUserFriendlyOnInvalidInput() {
 		robot.add(KeyEvent.VK_H);
