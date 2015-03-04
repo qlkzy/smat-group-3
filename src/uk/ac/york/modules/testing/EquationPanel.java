@@ -8,7 +8,6 @@ import java.awt.geom.Line2D;
 import java.text.DecimalFormat;
 
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 
 public class EquationPanel extends JPanel {
 	private static final long serialVersionUID = -1767320964962065783L;

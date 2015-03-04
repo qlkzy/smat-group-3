@@ -3,8 +3,6 @@
  */
 package uk.ac.york.modules.testing;
 
-import java.awt.HeadlessException;
-
 import javax.swing.JApplet;
 import javax.swing.JFrame;
 
