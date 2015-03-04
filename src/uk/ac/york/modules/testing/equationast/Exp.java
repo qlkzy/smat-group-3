@@ -26,5 +26,8 @@ public class Exp extends BinOp {
 	public double eval(double x) {
 		return Math.pow(left.eval(x), right.eval(x));
 	}
-
+	@Override
+	public PrecedenceLevel precedence() {
+		return PrecedenceLevel.ATOMIC;
+	}
 }

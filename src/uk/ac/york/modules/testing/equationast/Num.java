@@ -31,10 +31,10 @@ public class Num extends Node {
 	}
 
 	@Override
-	public boolean isTerminal() {
+	public boolean isFoldable() {
 		return true;
 	}
-
+	
 	@Override
 	public String toString() {
 		return format.format(value);
@@ -43,5 +43,15 @@ public class Num extends Node {
 	@Override
 	public boolean isNegative() {
 		return value < 0;
+	}
+	
+	@Override
+	public boolean isLiteral() {
+		return true;
+	}
+
+	@Override
+	public PrecedenceLevel precedence() {
+		return PrecedenceLevel.ATOMIC;
 	}
 }

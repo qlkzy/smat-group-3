@@ -7,12 +7,12 @@ public class Sin extends Node {
 	public Sin(Node arg) {
 		this.arg = arg;
 	}
-	
-	@Override
-	public boolean isTerminal() {
-		return true;
-	}
 
+	@Override
+	public PrecedenceLevel precedence() {
+		return PrecedenceLevel.ATOMIC;
+	}
+	
 	@Override
 	public double eval(double x) {
 		return Math.sin(arg.eval(x));
@@ -22,4 +22,5 @@ public class Sin extends Node {
 	public String toString() {
 		return "sin(" + arg.toString() + ")";
 	}
+
 }

@@ -20,7 +20,7 @@ public class Times extends BinOp {
 	
 	@Override
 	protected String symbol() {
-		return "";
+		return left.isLiteral() && right.isLiteral() ? "*" : "";
 	}
 
 	@Override
@@ -28,4 +28,8 @@ public class Times extends BinOp {
 		return left.eval(x) * right.eval(x);
 	}
 
+	@Override
+	public PrecedenceLevel precedence() {
+		return PrecedenceLevel.MULTIPLICATION;
+	}
 }

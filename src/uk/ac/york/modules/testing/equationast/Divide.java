@@ -1,7 +1,5 @@
 package uk.ac.york.modules.testing.equationast;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class Divide extends BinOp {
 
 	private static final Num rightUnit = new Num(1);
@@ -30,6 +28,8 @@ public class Divide extends BinOp {
 		return left.eval(x) / right.eval(x);
 	}
 
-
-
+	@Override
+	public PrecedenceLevel precedence() {
+		return PrecedenceLevel.MULTIPLICATION;
+	}
 }

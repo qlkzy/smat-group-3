@@ -3,11 +3,6 @@ package uk.ac.york.modules.testing.equationast;
 public class X extends Node {
 
 	@Override
-	public boolean isTerminal() {
-		return true;
-	}
-
-	@Override
 	public double eval(double x) {
 		return x;
 	}
@@ -17,4 +12,8 @@ public class X extends Node {
 		return "x";
 	}
 
+	@Override
+	public PrecedenceLevel precedence() {
+		return PrecedenceLevel.ATOMIC;
+	}
 }

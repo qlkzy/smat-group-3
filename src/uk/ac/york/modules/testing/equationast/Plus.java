@@ -28,4 +28,8 @@ public class Plus extends BinOp {
 		return right.isNegative() ? "" : "+";
 	}
 
+	@Override
+	public PrecedenceLevel precedence() {
+		return PrecedenceLevel.ADDITION;
+	}
 }
