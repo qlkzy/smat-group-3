@@ -47,7 +47,7 @@ public class EquationsView extends JApplet {
 		} else if(args[0].equals("Fraction")) {
 			e = Equation.createEquationFromType(FractionEquation.class);			
 		} else if(args[0].equals("SecondOrder")) {
-			System.out.println("SecondOrder Equations not yet implemented");
+			e = Equation.createEquationFromType(SecondOrderEquation.class);
 		} else {
 			System.out.println("Options are: \n"
 					+ "\tFirstOrder:   f(x) = ax+b\n"
