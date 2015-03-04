@@ -42,8 +42,13 @@ public class NumTest {
 	}
 
 	@Test
-	public void shouldPrintAsValue() {
-		assertEquals("15.0", new Num(15).toString());
+	public void integersShouldFormatAsInteger() {
+		assertEquals("15", new Num(15).toString());
+	}
+	
+	@Test
+	public void decimalsShouldFormatAsDecimal() {
+		assertEquals("15.1", new Num(15.1).toString());
 	}
 	
 }

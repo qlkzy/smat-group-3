@@ -18,17 +18,17 @@ public class PlusTest {
 
 	@Test
 	public void shouldFormatLiteralPair() {
-		assertEquals("1.0+2.0", new Plus(new Num(1), new Num(2)).toString());		
+		assertEquals("1+2", new Plus(new Num(1), new Num(2)).toString());		
 	}
 	
 	@Test
 	public void shouldDropLeftUnit() {
-		assertEquals("2.0", new Plus(new Num(0), new Num(2)).toString());
+		assertEquals("2", new Plus(new Num(0), new Num(2)).toString());
 	}
 	
 	@Test
 	public void shouldDropRightUnit() {
-		assertEquals("1.0", new Plus(new Num(1), new Num(0)).toString());
+		assertEquals("1", new Plus(new Num(1), new Num(0)).toString());
 	}
 		
 }

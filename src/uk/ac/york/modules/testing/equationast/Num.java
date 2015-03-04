@@ -1,8 +1,11 @@
 package uk.ac.york.modules.testing.equationast;
 
+import java.text.DecimalFormat;
+
 public class Num extends Node {
 
 	private final double value;
+	private static final DecimalFormat format = new DecimalFormat();
 	
 	public Num(double value) {
 		this.value = value;
@@ -34,7 +37,7 @@ public class Num extends Node {
 
 	@Override
 	public String toString() {
-		return Double.toString(value);
+		return format.format(value);
 	}
 	
 	@Override
