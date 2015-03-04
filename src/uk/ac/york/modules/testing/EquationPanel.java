@@ -9,10 +9,9 @@ import java.awt.geom.Line2D;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
-@SuppressWarnings({ "serial", "unchecked" })
 public class EquationPanel extends JPanel {
+	private static final long serialVersionUID = -1767320964962065783L;
 
-	
 	/**
 	 * The equation.
 	 */

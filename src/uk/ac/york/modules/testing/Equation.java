@@ -5,7 +5,6 @@ package uk.ac.york.modules.testing;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.JOptionPane;
 
@@ -31,9 +30,9 @@ public abstract class Equation {
 	 * @return the Equation
 	 */
 	@SuppressWarnings("unchecked")
-	public static Equation createEquationFromType(Class equationType) {
+	public static Equation createEquationFromType(Class<? extends Equation> equationType) {
 		try {
-			Constructor c =  equationType.getConstructors()[0];
+			Constructor<? extends Equation> c =  (Constructor<? extends Equation>)equationType.getConstructors()[0];
 			int n_arguments = c.getParameterTypes().length;
 			Object[] arguments = new Double [n_arguments];
 

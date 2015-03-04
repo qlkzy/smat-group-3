@@ -2,7 +2,6 @@ package uk.ac.york.modules.testing.input;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class DoubleValidatorTest {

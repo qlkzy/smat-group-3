@@ -3,12 +3,10 @@
  */
 package uk.ac.york.modules.testing;
 
+import java.awt.HeadlessException;
+
 import javax.swing.JApplet;
 import javax.swing.JFrame;
-
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import java.awt.HeadlessException;
 
 
 /**

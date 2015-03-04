@@ -6,19 +6,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 public class VariableInputDialog extends JDialog implements ActionListener, DocumentListener {
+
+	private static final long serialVersionUID = -595562591786707719L;
 
 	private final JTextField text;
 	private final JButton ok;
@@ -27,7 +26,7 @@ public class VariableInputDialog extends JDialog implements ActionListener, Docu
 	private final Border redBorder;
 	
 	public static class Cancelled extends Exception {
-		
+		private static final long serialVersionUID = -4135522191555501356L;	
 	}
 	
 	public VariableInputDialog(String name, String description) {
@@ -125,7 +124,7 @@ public class VariableInputDialog extends JDialog implements ActionListener, Docu
 		}
 		double d = vi.value();
 		vi.dispose();
-		return vi.value();
+		return d;
 	}
 	
 	private void checkValid() {
