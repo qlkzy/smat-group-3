@@ -16,12 +16,14 @@ public abstract class BinOp extends Node {
 			return right.toString();
 		if (right.equals(rightUnit()))
 			return left.toString();
+		if (left.equals(leftNull()))
+			return "";
 		return maybeParenthesized(left) + symbol() + maybeParenthesized(right);
 	}
 	
 	@Override
 	public boolean isFoldable() {
-		return left.isFoldable() && right.isFoldable();
+		return (left.isFoldable() && right.isFoldable()) || left.equals(leftNull());
 	}
 	
 	public String maybeParenthesized(Node node) {
@@ -29,6 +31,10 @@ public abstract class BinOp extends Node {
 			return "(" + node.toString() + ")";
 		}
 		return node.toString();
+	}
+	
+	protected Num leftNull() {
+		return null;
 	}
 	
 	protected abstract Num leftUnit();

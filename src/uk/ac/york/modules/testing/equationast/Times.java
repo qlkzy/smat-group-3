@@ -2,6 +2,7 @@ package uk.ac.york.modules.testing.equationast;
 
 public class Times extends BinOp {
 
+	private static final Num nullValue = new Num(0);
 	private static final Num unit = new Num(1);
 	
 	public Times(Node left, Node right) {
@@ -31,5 +32,10 @@ public class Times extends BinOp {
 	@Override
 	public PrecedenceLevel precedence() {
 		return PrecedenceLevel.MULTIPLICATION;
+	}
+	
+	@Override
+	public Num leftNull() {
+		return nullValue;
 	}
 }

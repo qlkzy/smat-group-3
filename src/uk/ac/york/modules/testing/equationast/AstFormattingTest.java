@@ -48,4 +48,10 @@ public class AstFormattingTest {
 		Node eqn = num(2).times(sin(num(3)));
 		assertEquals("2sin(3)", eqn.toString());
 	}
+	
+	@Test
+	public void shouldFoldNullMult() {
+		Node eqn = num(0).times(num(1));
+		assertEquals("", eqn.toString());
+	}
 }
