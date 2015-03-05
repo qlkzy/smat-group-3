@@ -69,7 +69,9 @@ public class EquationPanel extends JPanel {
 		// choose a plausibly-minimal number of fractional digits
 		// for the y axis
 		this.yScaleFormat = new DecimalFormat();
-		final int yFractionDigits = (int)Math.ceil(1/(maxY-minY));
+		int yFractionDigits = (int)Math.ceil(1/(maxY-minY));
+		if (yFractionDigits > 4)
+			yFractionDigits = 4;
 		yScaleFormat.setMaximumFractionDigits(yFractionDigits);
 		yScaleFormat.setMinimumFractionDigits(yFractionDigits);
 	}
