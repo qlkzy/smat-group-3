@@ -14,10 +14,6 @@ public class SinusBasedEquation extends Equation {
 	public SinusBasedEquation(double a, double b, double c, double d) {
 		super(num(a).times(sin(num(b).times(x())).exp(num(c))).plus(num(d)));
 	}
-	@Override
-	public double of(double x) {
-		return eqn.eval(x);
-	}
 	public static String description() {
 		return "a*sin(b*x)^c+d";
 	}

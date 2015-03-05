@@ -24,14 +24,6 @@ public class FirstOrderEquation extends Equation {
 		super(num(a).times(x()).plus(num(b)));
 	}
 	
-	/* (non-Javadoc)
-	 * @see uk.ac.york.modules.testing.Equation#of(double)
-	 */
-	@Override
-	public double of(double x) {
-		return eqn.eval(x);
-	}
-
 	public static String description() {
 		return "ax+b";
 	}

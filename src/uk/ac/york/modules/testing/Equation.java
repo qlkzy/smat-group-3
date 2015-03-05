@@ -66,11 +66,14 @@ public abstract class Equation {
 	 * @param x the x to use with f(x)
 	 * @return the result for this equation given x.
 	 */
-	public abstract double of(double x);
-
+	public double of(double x) {
+		return eqn.eval(x);
+	}
+	
 	@Override
 	public String toString() {
 		String s = eqn.toString();
 		return s.equals("") ? "0" : s;
 	}
+
 }

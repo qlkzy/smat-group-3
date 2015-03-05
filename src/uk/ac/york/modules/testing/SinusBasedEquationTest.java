@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class SinusBasedEquationTest {
 
-	private SinusBasedEquation eq;
+	private Equation eq;
 	
 	@Before
 	public void setUp() throws Exception {

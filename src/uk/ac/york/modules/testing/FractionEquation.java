@@ -14,10 +14,6 @@ public class FractionEquation extends Equation {
 	public FractionEquation(double a, double b) {
 		super(num(a).dividedBy(x().plus(num(b))));
 	}
-	@Override
-	public double of(double x) {
-		return eqn.eval(x);
-	}
 	public static String description() {
 		return "a/(x+b)";
 	}
