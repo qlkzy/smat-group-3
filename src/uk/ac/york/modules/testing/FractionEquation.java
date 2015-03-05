@@ -1,6 +1,5 @@
 package uk.ac.york.modules.testing;
 
-import uk.ac.york.modules.testing.equationast.Node;
 import static uk.ac.york.modules.testing.equationast.Node.*;
 
 /**
@@ -12,20 +11,13 @@ import static uk.ac.york.modules.testing.equationast.Node.*;
  */
 public class FractionEquation extends Equation {
 
-	private final Node eqn;
-
 	public FractionEquation(double a, double b) {
-		this.eqn = num(a).dividedBy(x().plus(num(b)));
+		super(num(a).dividedBy(x().plus(num(b))));
 	}
 	@Override
 	public double of(double x) {
 		return eqn.eval(x);
 	}
-	@Override
-	public String toString() {
-		return eqn.toString();
-	}
-
 	public static String description() {
 		return "a/(x+b)";
 	}

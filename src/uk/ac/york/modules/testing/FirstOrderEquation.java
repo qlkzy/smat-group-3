@@ -3,7 +3,6 @@
  */
 package uk.ac.york.modules.testing;
 
-import uk.ac.york.modules.testing.equationast.Node;
 import static uk.ac.york.modules.testing.equationast.Node.*;
 
 /**
@@ -15,8 +14,6 @@ import static uk.ac.york.modules.testing.equationast.Node.*;
  */
 public class FirstOrderEquation extends Equation {
 
-	private final Node eqn;
-	
 	/**
 	 * Creates a first-order equation.
 	 * 
@@ -24,17 +21,9 @@ public class FirstOrderEquation extends Equation {
 	 * @param b b in ax+b
 	 */
 	public FirstOrderEquation(double a, double b) {
-		this.eqn = num(a).times(x()).plus(num(b));
+		super(num(a).times(x()).plus(num(b)));
 	}
 	
-	/* (non-Javadoc)
-	 * @see uk.ac.york.modules.testing.Equation#toString()
-	 */
-	@Override
-	public String toString() {
-		return eqn.toString();
-	}
-
 	/* (non-Javadoc)
 	 * @see uk.ac.york.modules.testing.Equation#of(double)
 	 */

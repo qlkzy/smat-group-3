@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 
 import javax.swing.JOptionPane;
 
+import uk.ac.york.modules.testing.equationast.Node;
 import uk.ac.york.modules.testing.input.VariableInputDialog;
 import uk.ac.york.modules.testing.input.VariableInputDialog.Cancelled;
 
@@ -18,6 +19,8 @@ import uk.ac.york.modules.testing.input.VariableInputDialog.Cancelled;
  */
 public abstract class Equation {
 
+	protected final Node eqn;
+	
 	/**
 	 * Static method creating an instance of a given Equation type. 
 	 * The method asks values of parameters through option panes.
@@ -53,11 +56,10 @@ public abstract class Equation {
 		return null;
 	}
 	
-	@Override
-	public String toString() {
-		return "A "+this.getClass().getName();
+	protected Equation(Node eqn) {
+		this.eqn = eqn;
 	}
-	
+
 	/**
 	 * Calculates the value of this equation for x.
 	 * 
@@ -65,4 +67,10 @@ public abstract class Equation {
 	 * @return the result for this equation given x.
 	 */
 	public abstract double of(double x);
+
+	@Override
+	public String toString() {
+		String s = eqn.toString();
+		return s.equals("") ? "0" : s;
+	}
 }

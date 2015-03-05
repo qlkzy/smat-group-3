@@ -62,6 +62,12 @@ public class EquationPanel extends JPanel {
 		if (maxY > 0 && series.yValuesInRange(0, maxY) == 0) {
 			maxY = 0;
 		}
+		
+		// handle completely flat graphs
+		if (minY == maxY) {
+			minY = minY - 5;
+			maxY = maxY + 5;
+		}
 
 		this.minY = minY;
 		this.maxY = maxY;
