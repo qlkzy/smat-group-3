@@ -78,4 +78,7 @@ public class EquationTest {
 		Equation.createEquationFromType(SinusBasedEquation.class);
 	}
 	
+	/**
+	 * does not exit correctly on close
+	 */
 }

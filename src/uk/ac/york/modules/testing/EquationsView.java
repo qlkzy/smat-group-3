@@ -35,5 +35,6 @@ public class EquationsView extends JApplet {
 		EquationPanel p = new EquationPanel(e);
 		f.add(p);
 		f.setVisible(true);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
