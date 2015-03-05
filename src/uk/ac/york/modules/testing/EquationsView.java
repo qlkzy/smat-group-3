@@ -10,14 +10,14 @@ public class EquationsView extends JApplet {
 	public static void main(String[] args) {
 		
 		Equation e = null;
+
+		if (args.length != 1) {
+			complain(args);
+		}
 		
 		if (args[0].equals("Help")) {
 			printHelp();
 			System.exit(0);
-		}
-		
-		if (args.length != 1) {
-			complain(args);
 		}
 		
 		if (args[0].equals("FirstOrder")) {
